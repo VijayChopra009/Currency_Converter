@@ -1,4 +1,3 @@
-// const baseurl =   "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/US/IN";
 const baseurl = "https://latest.currency-api.pages.dev/v1/currencies"
 const dropdown = document.querySelectorAll(".dropdown select");
 const button = document.querySelector("form button");
@@ -31,9 +30,7 @@ const updateFlag = (element) => {
     let img = element.parentElement.querySelector("img");
     img.src = newsrc;
 }
-
-button.addEventListener("click", async (e) => {
-    e.preventDefault();
+updateExchange = async () =>{
     let amount = document.querySelector(".amount input")
     let amountValue = amount.value;
     if (amountValue == "" || amountValue < 1) {
@@ -49,4 +46,12 @@ button.addEventListener("click", async (e) => {
     const rate = from[tovalue];
     let finalAmount =rate*amountValue;
    msg.innerText = `${amountValue} ${fromvalue} = ${finalAmount.toFixed(2)} ${tovalue}`;
+}
+
+window.addEventListener("load",() =>{
+    updateExchange();
+})
+button.addEventListener("click",  (e) => {
+    e.preventDefault();
+    updateExchange()
 })
